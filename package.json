@@ -19,14 +19,14 @@
   "types": "index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "prepublish": "./scripts/prepublish.sh",
+    "prepublish": "cross-env NODE_ENV=development ./scripts/prepublish.sh",
     "preversion": ". ./scripts/prepublish.sh",
-    "dev": "NODE_ENV=development ./node_modules/hjs-webpack/bin/hjs-dev-server.js",
-    "build": "NODE_ENV=production webpack",
+    "dev": " cross-env NODE_ENV=development ./node_modules/hjs-webpack/bin/hjs-dev-server.js",
+    "build": " cross-env NODE_ENV=production webpack",
     "publish_pages": "gh-pages -d public/",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
-    "testonly": "NODE_ENV=test mocha $npm_package_options_mocha",
+    "testonly": " cross-env NODE_ENV=test mocha $npm_package_options_mocha",
     "test": "npm run lint && npm run testonly",
     "test-watch": "npm run testonly -- --watch --watch-extensions js"
   },
@@ -82,5 +82,7 @@
     "react": "~0.14.8 || ^15.0.0 || ^16.0.0",
     "react-dom": "~0.14.8 || ^15.0.0 || ^16.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cross-env": "^7.0.2"
+  }
 }
